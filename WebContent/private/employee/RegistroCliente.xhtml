@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+xmlns:h="http://xmlns.jcp.org/jsf/html" 
+xmlns:ui="http://xmlns.jcp.org/jsf/facelets" 
+xmlns:f="http://xmlns.jcp.org/jsf/core" 
+xmlns:p="http://primefaces.org/ui" 
+xmlns:z="http://xmlns.jcp.org/jsf/passthrough">
+<h:head>
+
+
+    <meta charset="utf-8" />
+    <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png" />
+    <link rel="icon" type="image/png" href="../assets/img/favicon.png" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>
+        Registrar Cliente
+    </title>
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+    <!--     Fonts and icons     -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous" />
+
+    
+</h:head>
+
+<h:body>
+      <div class="wrapper ">
+
+        <div class="main-panel" id="main-panel">
+            <!-- Navbar -->
+
+           
+
+            <!-- End Navbar -->
+            <div class="panel-header panel-header-sm">
+
+            </div>
+
+            <div class="content">
+                <div class="row">
+                    <div style="width: 95%;">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="title" style=" color: yellowgreen;"> Registrar Cliente</h5>
+                            </div>
+                            <div class="card-body">
+
+
+
+                                <h:form id="crearUsuario">
+                                    <div class="row">
+                                        
+                                        <div class="col-md-3 px-1">
+                                            <div class="form-group">
+                                            
+                                                <label>Nombre:</label>
+                                                <h:inputText id="nombre" class="form-control" value="#{clienteBean.nombre}" cols="2" z:placeholder="Nombre" />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 pl-1">
+                                            <div class="form-group">
+                                            
+                                                <label for="exampleInputEmail1">Apellido:</label>
+                                                <h:inputText class="form-control" id="apellido" value="#{clienteBean.apellido}" cols="2" z:placeholder="Apellido" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6 pr-1">
+                                            <div class="form-group">
+                                            
+                                                <label>Cedula: </label>
+                                                <h:inputText class="form-control" id="cedula" value="#{clienteBean.cedula}" cols="2" z:placeholder="Cedula" />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 pl-1">
+                                            <div class="form-group">
+                                            
+                                                <label>Direccion:</label>
+                                                <h:inputText class="form-control" id="direccion" value="#{clienteBean.direccion}" cols="2" z:placeholder="Ej. Paute- Abdon Calderon y bahia San jose" />
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-4 pr-1">
+                                            <div class="form-group">
+                                            
+                                                <label>Telefono:</label>
+                                                <h:inputText class="form-control" id="telefono" value="#{clienteBean.telefono}" cols="2" z:placeholder="Movil o Convencional" />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 px-1">
+                                            <div class="form-group">
+                                            
+                                                <label>Correo: </label>
+                                                <h:inputText class="form-control" id="correo" value="#{clienteBean.correo}" cols="2" z:placeholder="ejemplo@gmail.com" />
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4 pl-1">
+
+                                            <div class="form-group">
+                                                <h:commandButton class="btn btn-primary btn-block" value="Registrar Cliente" action="#{clienteBean.agregarPersona}" update="crearUsuario" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </h:form>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+   
+
+</h:body>
+
+</html>
