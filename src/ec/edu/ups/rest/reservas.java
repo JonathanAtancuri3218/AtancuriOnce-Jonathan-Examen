@@ -12,6 +12,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
@@ -40,11 +41,14 @@ public class reservas {
         // TODO Auto-generated constructor stub
     }
 
-    @POST
-    @Path("/listarCliente")
+    @GET
+    @Path("/listarClienteReservas/{cedula}")
     @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-    public Response listar(@FormParam("cedula") String cedula) {
+    @Consumes(MediaType.APPLICATION_JSON)
+   // @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    public Response listar(@PathParam("cedula") String cedula) {
+    	
+    	System.out.println("Metodo Listar reservas clientes:"+cedula);
 	
     	Cliente cliente = ejbCliente.buscarPorCedula(cedula);
     	
@@ -57,22 +61,31 @@ public class reservas {
     		Cliente p = new Cliente(cliente.getId(), cliente.getCedula(), cliente.getNombre(), cliente.getApellido(), cliente.getTelefono(), cliente.getDireccion(), cliente.getCorreo());
 			Reserva r = new Reserva(pedidoCabecera.getId(), pedidoCabecera.getFecha(), pedidoCabecera.getNumeroPersonas(), p);
 			
+			
 			pedido.add(r);
 		}
     	
     	
     	Jsonb jsonb = JsonbBuilder.create();
-    	return Response.status(201).entity(jsonb.toJson(pedido))
+    	return Response.ok(jsonb.toJson(pedido))
     		.header("Access-Control-Allow-Origin", "*")
     		.header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
     		.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE").build();
     }
     
-    @POST
-    @Path("/listarRest")
+    @GET
+    @Path("/listar")
     @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-    public Response listarRest(@FormParam("nombre") String nombre) {
+   // @Consumes(MediaType.APPLICATION_JSON)
+    public Response Listcli( ) {
+    	return null;
+    }
+    
+    @GET
+    @Path("/listarRestauranteReservas/{nombre}")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response listarRest(@PathParam("nombre") String nombre) {
 	
     	Restuarante restuarante = ejbResturante.buscarPorNombre(nombre);
     	
@@ -97,6 +110,47 @@ public class reservas {
     		.header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
     		.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE").build();
     }
+    
+    
+    
+	@GET
+	@Path("/buscarCliente/{cedula}")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response buscarUsuario(@PathParam("cedula") String cedula) {
+		Cliente usu = new Cliente();
+		Jsonb jsonb = JsonbBuilder.create();
+		//usu = ejbUsuarioFacade.find(cedula);
+		usu = ejbCliente.buscarPorCedula(cedula);
+		
+		System.out.println("usuario recuperado: "+usu);
+		
+		return Response.status(201).entity(jsonb.toJson(usu))
+				.header("Access-Control-Allow-Origin", "*")
+				.header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
+				.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE").build();
+		
+	}
+	
+	@GET
+	@Path("/buscarRestaurante/{nombre}")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response buscarRestaurante(@PathParam("nombre") String nombre) {
+		Restuarante rest = new Restuarante();
+		Jsonb jsonb = JsonbBuilder.create();
+		//usu = ejbUsuarioFacade.find(cedula);
+		rest = ejbResturante.buscarPorNombre(nombre);
+		
+		System.out.println("usuario recuperado: "+rest);
+		
+		return Response.status(201).entity(jsonb.toJson(rest))
+				.header("Access-Control-Allow-Origin", "*")
+				.header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
+				.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE").build();
+		
+	}
+	
     
     
     @POST
@@ -130,7 +184,7 @@ public class reservas {
     }
     
     @POST
-    @Path("/agregarCliente")
+    @Path("/crearCliente")
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     @Produces(MediaType.TEXT_PLAIN)
     public Response crearCliente(
@@ -140,6 +194,17 @@ public class reservas {
     		@FormParam("correo") String correo, 
     		@FormParam("direccion") String direccion,
     		@FormParam("telefono") String telefono) {
+    	
+    	System.out.println("Metodo crear");
+
+    	System.out.println("Nombre " + nombre);
+    	System.out.println("Apellido " + apellido);
+    	System.out.println("Telefono " + telefono);
+    	System.out.println("Cedula " + cedula);
+    	System.out.println("Correo " + correo);
+    	System.out.println("Direccion " + direccion);
+    	
+    	
     	Cliente cliente = new Cliente();
     	cliente.setNombre(nombre);
     	cliente.setApellido(apellido);
@@ -158,14 +223,24 @@ public class reservas {
     }
     
     @POST
-    @Path("/agregarRestaurante")
-    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/crearRestaurante")
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    @Produces(MediaType.TEXT_PLAIN)
     public Response crearCliente(
     		@FormParam("nombre") String nombre,
     		@FormParam("direccion") String direccion,
     		@FormParam("telefono") String telefono, 
     		@FormParam("aforo") int aforo) {
+    	
+    	System.out.println("Metodo crear");
+
+    	System.out.println("Nombre " + nombre);
+    	System.out.println("Direccion " + direccion);
+    	System.out.println("Telefono " + telefono);
+    	System.out.println("Aforo " + aforo);
+
+    	
+    	
     	Restuarante restaurante = new Restuarante();
     	restaurante.setNombre(nombre);
     	restaurante.setDireccion(direccion);
@@ -180,6 +255,8 @@ public class reservas {
     		.header("Access-Control-Allow-Headers", "origin, content-type, accept, authorization")
     		.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE").build();
     }
+    
+    
 
 
 }

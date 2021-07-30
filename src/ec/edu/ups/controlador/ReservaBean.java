@@ -135,7 +135,7 @@ public class ReservaBean implements Serializable{
 			
 			if (capacidad > 1) {
 				
-				System.out.println("Hasta aqui"+fechaIngreso);
+				//System.out.println("Hasta aqui"+fechaIngreso);
 				
 				Calendar cal = Calendar.getInstance();
 				SimpleDateFormat formato =  new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);

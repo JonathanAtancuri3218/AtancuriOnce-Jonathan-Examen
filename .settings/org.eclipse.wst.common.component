@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
-    <wb-module deploy-name="exa-pra">
+    <wb-module deploy-name="AtancuriOnce-Jonathan-Examen">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <property name="context-root" value="exa-pra"/>
-        <property name="java-output-path" value="/exa-pra/build/classes"/>
+        <property name="context-root" value="AtancuriOnce-Jonathan-Examen"/>
+        <property name="java-output-path" value="/AtancuriOnce-Jonathan-Examen/build/classes"/>
     </wb-module>
 </project-modules>
